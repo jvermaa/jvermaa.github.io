@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jatin Verma — Engineer</title>
+<meta name="description" content="Distributed backend systems, agentic AI, and autonomous robotics. Apple SWE Intern. CS @ University of Florida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=JetBrains+Mono:wght@400;500;700&family=Chakra+Petch:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#E7E8D3;
+    --cream-dark:#D4D5BF;
+    --ink:#030303;
+    --ink-soft:#1a1a1a;
+    --orange:#FFA54D;
+    --orange-deep:#E88A2C;
+    --paper:#FFFFFF;
+    --green:#34C830;
+    --shadow:8px 8px 0 0 var(--ink);
+    --shadow-sm:4px 4px 0 0 var(--ink);
+    --shadow-xs:2px 2px 0 0 var(--ink);
+    --bw:3px;
+    --display:'Pixelify Sans', monospace;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --body:'Chakra Petch', system-ui, sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--cream);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.4;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,.03) 0, transparent 1px),
+      radial-gradient(circle at 75% 60%, rgba(0,0,0,.025) 0, transparent 1px);
+    background-size:3px 3px, 5px 5px;
+  }
+  a{color:inherit;text-decoration:none}
+  ul{list-style:none}
+  img,svg{display:block;max-width:100%}
+
+  .grid-bg{
+    position:absolute;inset:0;
+    background-image:radial-gradient(rgba(0,0,0,.08) 1px, transparent 1px);
+    background-size:20px 20px;
+    pointer-events:none;
+    mask-image:linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,.4) 70%, transparent 100%);
+    -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,.4) 70%, transparent 100%);
+  }
+
+  /* ========== NAV ========== */
+  .nav-wrap{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:var(--bw) solid var(--ink)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1280px;margin:0 auto}
+  .nav-left{display:flex;align-items:center;gap:14px}
+  .nav-avatar{
+    width:42px;height:42px;border-radius:50%;
+    border:var(--bw) solid var(--ink);
+    background:linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);
+    flex-shrink:0;position:relative;overflow:visible;
+  }
+  .nav-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+  .nav-avatar::after{
+    content:"";position:absolute;bottom:-2px;right:-2px;
+    width:12px;height:12px;border-radius:50%;
+    background:var(--green);
+    border:2px solid var(--cream);
+    box-shadow:0 0 0 1px var(--ink);
+  }
+  .nav-name{font-family:var(--display);font-size:18px;font-weight:700;line-height:1}
+  .nav-role{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-top:3px}
+  .nav-links{display:flex;gap:4px;align-items:center}
+  .nav-links a{
+    font-family:var(--mono);font-size:12px;font-weight:500;
+    padding:8px 14px;text-transform:uppercase;letter-spacing:.08em;
+    transition:background .15s, color .15s;
+  }
+  .nav-links a:hover{background:var(--ink);color:var(--cream)}
+  .nav-cta{
+    font-family:var(--mono);font-size:12px;font-weight:700;
+    background:var(--ink);color:var(--cream);
+    padding:10px 18px;text-transform:uppercase;letter-spacing:.08em;
+    border:var(--bw) solid var(--ink);
+    box-shadow:var(--shadow-xs) var(--orange);
+    transition:transform .12s, box-shadow .12s;
+  }
+  .nav-cta:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 0 var(--orange)}
+  @media (max-width:780px){.nav-links{display:none}.nav-role{display:none}}
+
+  /* ========== HERO ========== */
+  .hero{position:relative;border-bottom:var(--bw) solid var(--ink);padding:70px 24px 90px;overflow:hidden}
+  .hero-inner{max-width:1280px;margin:0 auto;position:relative;z-index:2}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;
+    background:var(--paper);border:2px solid var(--ink);padding:6px 14px;
+    margin-bottom:28px;box-shadow:var(--shadow-xs);
+  }
+  .hero-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 1px var(--ink);animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.9)}}
+
+  .hero h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(54px, 10vw, 150px);
+    line-height:.92;letter-spacing:-.02em;margin-bottom:20px;
+  }
+  .hero h1 .accent{color:var(--orange-deep);position:relative;display:inline-block}
+  .hero h1 .accent::after{content:"_";color:var(--ink);animation:blink 1.05s steps(1) infinite;margin-left:.05em}
+  @keyframes blink{50%{opacity:0}}
+
+  .hero-sub{font-family:var(--mono);font-size:14px;letter-spacing:.06em;text-transform:uppercase;font-weight:500;margin-bottom:36px;opacity:.7}
+
+  .hero-meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .meta-card{
+    background:var(--paper);border:var(--bw) solid var(--ink);
+    padding:10px 16px;font-family:var(--mono);font-size:13px;font-weight:500;
+    box-shadow:var(--shadow-xs);display:flex;align-items:center;gap:10px;
+  }
+  .meta-card .label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;background:var(--ink);color:var(--cream);padding:2px 6px;font-weight:700}
+  .meta-card.warm{background:var(--orange);box-shadow:var(--shadow-xs) var(--ink)}
+
+  .corner{position:absolute;width:14px;height:14px;background:var(--ink);z-index:3}
+  .corner.tl{top:0;left:0}.corner.tr{top:0;right:0}
+  .corner.bl{bottom:-2px;left:0}.corner.br{bottom:-2px;right:0}
+
+  /* terminal — floats top right */
+  .terminal{
+    position:absolute;top:60px;right:48px;width:340px;
+    background:var(--ink);color:var(--cream);
+    border:var(--bw) solid var(--ink);box-shadow:var(--shadow);
+    font-family:var(--mono);font-size:12px;
+    transform:rotate(2deg);z-index:1;
+  }
+  .terminal-bar{background:var(--ink-soft);padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #333}
+  .terminal-bar .lights{display:flex;gap:6px}
+  .terminal-bar .light{width:10px;height:10px;border-radius:50%;background:#444}
+  .terminal-bar .light.r{background:#ff5f57}.terminal-bar .light.y{background:#febc2e}.terminal-bar .light.g{background:#28c840}
+  .terminal-bar .title{font-size:11px;letter-spacing:.08em;opacity:.6;margin-left:8px}
+  .terminal-body{padding:14px}
+  .terminal-line{margin-bottom:5px;line-height:1.5}
+  .terminal-prompt{color:var(--orange)}
+  .terminal-out{color:#5acfa6}
+  .terminal-comment{opacity:.5}
+  @media (max-width:1080px){.terminal{display:none}}
+
+  /* ========== STATS RIBBON ========== */
+  .stats-ribbon{
+    background:var(--ink);color:var(--cream);
+    border-bottom:var(--bw) solid var(--ink);
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .stat-cell{
+    padding:32px 24px;
+    border-right:1px solid rgba(231,232,211,.15);
+    display:flex;flex-direction:column;gap:6px;
+    position:relative;overflow:hidden;
+  }
+  .stat-cell:last-child{border-right:none}
+  .stat-cell .num{font-family:var(--mono);font-size:54px;font-weight:700;line-height:1;color:var(--orange);letter-spacing:-.02em}
+  .stat-cell .label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+  .stat-cell .desc{font-family:var(--mono);font-size:12px;opacity:.55}
+  @media (max-width:820px){
+    .stats-ribbon{grid-template-columns:repeat(2,1fr)}
+    .stat-cell{border-bottom:1px solid rgba(231,232,211,.15)}
+  }
+
+  /* ========== TICKER ========== */
+  .ticker{
+    background:var(--cream);padding:14px 0;overflow:hidden;
+    border-bottom:var(--bw) solid var(--ink);position:relative;
+  }
+  .ticker-track{
+    display:flex;gap:48px;white-space:nowrap;
+    animation:ticker 28s linear infinite;
+    font-family:var(--display);font-size:22px;font-weight:400;letter-spacing:.02em;
+  }
+  .ticker-track span{display:inline-flex;align-items:center;gap:48px;flex-shrink:0}
+  .ticker-track .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--orange);flex-shrink:0;border:2px solid var(--ink)}
+  @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ========== SECTION HEAD ========== */
+  .section{padding:90px 24px;border-bottom:var(--bw) solid var(--ink);position:relative}
+  .section-inner{max-width:1280px;margin:0 auto}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;gap:24px;flex-wrap:wrap}
+  .section-tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink);font-weight:700;background:var(--orange);padding:5px 10px;
+    display:inline-block;border:2px solid var(--ink);margin-bottom:14px;
+  }
+  .section-head h2{font-family:var(--display);font-weight:700;font-size:clamp(48px,7vw,96px);line-height:.95;letter-spacing:-.01em}
+  .section-meta{font-family:var(--mono);font-size:13px;font-weight:500;text-align:right;max-width:320px;line-height:1.5}
+  @media (max-width:680px){.section-meta{text-align:left}}
+
+  /* ========== LANE HEADER ========== */
+  .lane{margin-bottom:80px}
+  .lane:last-child{margin-bottom:0}
+  .lane-header{
+    display:flex;align-items:center;gap:18px;margin-bottom:28px;
+    padding-bottom:18px;border-bottom:var(--bw) solid var(--ink);
+  }
+  .lane-num{
+    font-family:var(--display);font-size:48px;font-weight:700;line-height:1;
+    color:var(--orange-deep);width:80px;flex-shrink:0;
+  }
+  .lane-title{font-family:var(--display);font-size:36px;font-weight:700;line-height:1}
+  .lane-tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;opacity:.6;margin-left:auto}
+  @media (max-width:680px){
+    .lane-num{font-size:36px;width:auto}
+    .lane-title{font-size:26px}
+    .lane-tag{display:none}
+  }
+
+  /* ========== PROJECT BLOCK (the core 2-col layout) ========== */
+  .project{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border:var(--bw) solid var(--ink);
+    background:var(--paper);
+    margin-bottom:24px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    transition:transform .18s, box-shadow .18s;
+  }
+  .project:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 0 var(--ink)}
+  .project:last-child{margin-bottom:0}
+  .project-visual{
+    background:var(--cream-dark);
+    border-right:var(--bw) solid var(--ink);
+    min-height:340px;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;padding:24px;
+  }
+  .project-content{padding:28px 30px;display:flex;flex-direction:column}
+  .project-meta{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .project-tag{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+    background:var(--ink);color:var(--cream);padding:3px 8px;
+  }
+  .project-tag.live{background:var(--green);color:var(--ink)}
+  .project-tag.concept{background:var(--orange);color:var(--ink)}
+  .project-tag.shipped{background:var(--orange);color:var(--ink)}
+  .project h3{font-family:var(--display);font-weight:700;font-size:38px;line-height:1.02;margin-bottom:8px}
+  .project-tagline{font-size:17px;font-weight:500;margin-bottom:16px;line-height:1.4}
+  .project-tagline strong{background:var(--orange);padding:0 5px;border:2px solid var(--ink)}
+  .project-stats{
+    display:flex;gap:18px;margin-bottom:16px;flex-wrap:wrap;
+    padding:14px;background:var(--cream);border:2px solid var(--ink);
+  }
+  .project-stat{display:flex;flex-direction:column;gap:2px;flex:1;min-width:80px}
+  .project-stat .v{font-family:var(--mono);font-size:22px;font-weight:700;line-height:1.05;color:var(--ink);letter-spacing:-.01em}
+  .project-stat .l{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+  .project-arch{
+    margin-top:auto;padding-top:14px;border-top:2px dashed var(--ink);
+  }
+  .project-arch-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;opacity:.6;
+    margin-bottom:10px;
+  }
+  .project-stack{
+    font-family:var(--mono);font-size:12px;font-weight:500;
+    display:flex;flex-wrap:wrap;gap:6px;
+  }
+  .project-stack span{
+    background:var(--cream);border:1.5px solid var(--ink);padding:3px 8px;
+    transition:background .12s;
+  }
+  .project-stack span:hover{background:var(--orange)}
+  .project-cta{
+    margin-top:14px;display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.04em;
+    align-self:flex-start;
+  }
+  .project-cta:hover{color:var(--orange-deep)}
+
+  /* alt layout — visual on right */
+  .project.flip .project-visual{order:2;border-right:none;border-left:var(--bw) solid var(--ink)}
+  .project.flip .project-content{order:1}
+
+  /* dark variant */
+  .project.dark{background:var(--ink);color:var(--cream)}
+  .project.dark .project-visual{background:#0d0d0d;border-right-color:var(--orange)}
+  .project.dark .project-tag{background:var(--orange);color:var(--ink)}
+  .project.dark .project-stats{background:#1a1a1a;border-color:var(--cream)}
+  .project.dark .project-stat .v{color:var(--orange)}
+  .project.dark .project-stack span{background:#1a1a1a;border-color:var(--cream);color:var(--cream)}
+  .project.dark .project-stack span:hover{background:var(--orange);color:var(--ink)}
+  .project.dark .project-arch{border-top-color:rgba(231,232,211,.3)}
+  .project.dark.flip .project-visual{border-left-color:var(--orange)}
+
+  /* warm variant */
+  .project.warm{background:var(--orange)}
+  .project.warm .project-visual{background:#FFCD92}
+  .project.warm .project-stats{background:var(--paper)}
+  .project.warm .project-stack span{background:var(--paper)}
+  .project.warm .project-stack span:hover{background:var(--ink);color:var(--cream)}
+
+  @media (max-width:920px){
+    .project,.project.flip{grid-template-columns:1fr}
+    .project-visual{border-right:none !important;border-left:none !important;border-bottom:var(--bw) solid var(--ink) !important;min-height:280px}
+    .project.flip .project-visual{order:1}
+    .project.flip .project-content{order:2}
+    .project.dark .project-visual{border-bottom-color:var(--orange) !important}
+    .project h3{font-size:30px}
+  }
+
+  /* ========== EXPERIENCE TIMELINE (compact horizontal) ========== */
+  #experience{background:var(--paper)}
+  .timeline{
+    display:flex;gap:0;border:var(--bw) solid var(--ink);
+    box-shadow:var(--shadow);
+    overflow-x:auto;
+    background:var(--cream);
+  }
+  .tl-cell{
+    flex:1;min-width:200px;
+    padding:24px 20px;
+    border-right:2px solid var(--ink);
+    display:flex;flex-direction:column;gap:8px;
+    position:relative;
+  }
+  .tl-cell:last-child{border-right:none}
+  .tl-cell.featured{background:var(--orange)}
+  .tl-cell .when{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;opacity:.7}
+  .tl-cell .where{font-family:var(--display);font-size:24px;font-weight:700;line-height:1.05}
+  .tl-cell .what{font-family:var(--mono);font-size:11px;letter-spacing:.04em;font-weight:500;opacity:.7}
+
+  /* ========== STACK GRID ========== */
+  #stack{background:var(--cream-dark)}
+  .stack-list{display:grid;grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));gap:10px}
+  .chip{
+    background:var(--paper);border:var(--bw) solid var(--ink);
+    padding:12px 14px;font-family:var(--mono);font-size:13px;font-weight:500;
+    box-shadow:var(--shadow-xs);
+    transition:transform .12s, box-shadow .12s, background .12s;
+    display:flex;align-items:center;gap:10px;cursor:default;
+  }
+  .chip:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 0 var(--ink);background:var(--orange)}
+  .chip .dot{width:8px;height:8px;background:var(--orange);flex-shrink:0;border:1.5px solid var(--ink)}
+  .chip:hover .dot{background:var(--ink)}
+  .stack-group-title{
+    font-family:var(--display);font-weight:700;font-size:24px;
+    margin:32px 0 14px;display:flex;align-items:center;gap:14px;
+  }
+  .stack-group-title::before{content:"";flex-shrink:0;width:18px;height:18px;background:var(--orange);border:2px solid var(--ink)}
+  .stack-group-title:first-child{margin-top:0}
+
+  /* ========== CONTACT ========== */
+  #contact{background:var(--ink);color:var(--cream);border-bottom:none;padding-bottom:60px}
+  #contact .section-head h2{color:var(--cream)}
+  #contact .section-tag{background:var(--orange);color:var(--ink)}
+  .contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;margin-top:32px}
+  .contact-pitch{font-size:28px;line-height:1.3;font-weight:500;font-family:var(--display)}
+  .contact-pitch strong{background:var(--orange);color:var(--ink);padding:0 8px;border:2px solid var(--cream);font-weight:700}
+  .contact-list{display:flex;flex-direction:column;gap:12px}
+  .contact-row{
+    background:transparent;border:var(--bw) solid var(--cream);
+    padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    font-family:var(--mono);font-weight:500;
+    transition:background .15s, color .15s, border-color .15s;
+  }
+  .contact-row:hover{background:var(--orange);color:var(--ink);border-color:var(--orange)}
+  .contact-row .label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.6}
+  .contact-row .val{font-size:14px}
+  .contact-row .arrow{font-family:var(--display);font-size:20px}
+  @media (max-width:820px){.contact-grid{grid-template-columns:1fr}.contact-pitch{font-size:22px}}
+
+  /* ========== FOOTER ========== */
+  footer{
+    background:var(--ink);color:var(--cream);padding:30px 24px;
+    border-top:var(--bw) solid var(--orange);
+    font-family:var(--mono);font-size:12px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  footer a:hover{color:var(--orange)}
+
+  .reveal{opacity:0;transform:translateY(20px);animation:reveal .7s cubic-bezier(.2,.7,.3,1) forwards}
+  @keyframes reveal{to{opacity:1;transform:translateY(0)}}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}.d5{animation-delay:.45s}
+
+  /* ========== INLINE VISUAL STYLES ========== */
+  /* Phone mockup container */
+  .phone-mock{
+    width:200px;
+    background:var(--ink);
+    border-radius:32px;
+    padding:10px;
+    border:3px solid var(--ink);
+    box-shadow:6px 6px 0 0 var(--ink);
+    position:relative;
+  }
+  .phone-mock .notch{
+    position:absolute;top:14px;left:50%;transform:translateX(-50%);
+    width:40%;height:18px;background:var(--ink);border-radius:0 0 14px 14px;z-index:2;
+  }
+  .phone-mock .screen{
+    background:var(--cream);
+    border-radius:24px;
+    height:380px;overflow:hidden;
+    display:flex;flex-direction:column;
+    padding:34px 12px 12px;
+    position:relative;
+  }
+  /* generic abstract UI shapes */
+  .ui-bar{height:8px;background:var(--ink);border-radius:4px;margin-bottom:6px;width:60%}
+  .ui-bar.short{width:35%}
+  .ui-bar.long{width:80%}
+  .ui-card{background:var(--paper);border:2px solid var(--ink);padding:8px;margin-bottom:6px;border-radius:6px}
+
+  /* terminal-style screenshot */
+  .term-screen{
+    width:100%;max-width:380px;
+    background:var(--ink);color:var(--cream);
+    border:3px solid var(--ink);box-shadow:6px 6px 0 0 var(--cream);
+    font-family:var(--mono);font-size:11px;line-height:1.6;
+    border-radius:8px;overflow:hidden;
+  }
+  .term-screen .bar{background:var(--ink-soft);padding:8px 12px;display:flex;gap:6px}
+  .term-screen .bar i{display:inline-block;width:10px;height:10px;border-radius:50%}
+  .term-screen .body{padding:14px}
+  .term-screen .ok{color:#5acfa6}
+  .term-screen .warn{color:var(--orange)}
+  .term-screen .dim{opacity:.5}
+
+  /* brand label sticker */
+  .brand-sticker{
+    position:absolute;top:14px;left:14px;
+    background:var(--paper);border:2px solid var(--ink);
+    padding:4px 10px;font-family:var(--mono);font-size:10px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;
+    box-shadow:var(--shadow-xs);
+    z-index:3;
+  }
+  .project.dark .brand-sticker{background:var(--orange)}
+
+  /* SVG diagram common styles */
+  .arch-svg{width:100%;max-width:520px;height:auto;display:block}
+
+  /* Flat colored visual blocks */
+  .visual-pad{padding:30px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="#top" class="nav-left">
+      <div class="nav-avatar"><img src="jatin.jpg" alt="Jatin Verma"></div>
+      <div>
+        <div class="nav-name">Jatin Verma</div>
+        <div class="nav-role">Software Engineer</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#work">/work</a></li>
+      <li><a href="#experience">/exp</a></li>
+      <li><a href="#stack">/stack</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">say hi →</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="grid-bg"></div>
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+
+  <div class="hero-inner">
+    <div class="hero-tag reveal d1">
+      <span class="dot"></span>
+      <span>Open to SWE roles · Fall 2026</span>
+    </div>
+
+    <h1 class="reveal d2">I build<br>real <span class="accent">things</span></h1>
+
+    <p class="hero-sub reveal d3">// backend · agentic ai · autonomy · neural interfaces</p>
+
+    <div class="hero-meta reveal d4">
+      <div class="meta-card warm"><span class="label">Now</span><span>Apple Cash · Summer '26</span></div>
+      <div class="meta-card"><span class="label">Prev</span><span>Apple Pay · 2025</span></div>
+      <div class="meta-card"><span class="label">Edu</span><span>UF CS · '26</span></div>
+    </div>
+  </div>
+
+  <div class="terminal reveal d5">
+    <div class="terminal-bar">
+      <div class="lights"><div class="light r"></div><div class="light y"></div><div class="light g"></div></div>
+      <div class="title">~/jatin — zsh</div>
+    </div>
+    <div class="terminal-body">
+      <div class="terminal-line"><span class="terminal-prompt">$</span> whoami</div>
+      <div class="terminal-line terminal-out">jatin verma</div>
+      <div class="terminal-line"><span class="terminal-prompt">$</span> cat ./focus.txt</div>
+      <div class="terminal-line terminal-out">backend · ai · robotics · bci</div>
+      <div class="terminal-line"><span class="terminal-prompt">$</span> uptime</div>
+      <div class="terminal-line terminal-out">5y building, 0y stopping</div>
+      <div class="terminal-line terminal-comment"># scroll ↓</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS RIBBON -->
+<div class="stats-ribbon">
+  <div class="stat-cell">
+    <div class="num">2×</div>
+    <div class="label">Apple Internships</div>
+    <div class="desc">Pay '25 · Cash '26</div>
+  </div>
+  <div class="stat-cell">
+    <div class="num">1.5K</div>
+    <div class="label">Siren Users</div>
+    <div class="desc">Spotify-mentored</div>
+  </div>
+  <div class="stat-cell">
+    <div class="num">5</div>
+    <div class="label">Models On-Device</div>
+    <div class="desc">in SynthIA</div>
+  </div>
+  <div class="stat-cell">
+    <div class="num">34M</div>
+    <div class="label">Msgs/Day</div>
+    <div class="desc">Discord clone, 1 M2 node</div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>
+      Distributed Systems<span class="dot"></span>
+      Agentic AI<span class="dot"></span>
+      Autonomous Robotics<span class="dot"></span>
+      Brain-Computer Interfaces<span class="dot"></span>
+      Distributed Systems<span class="dot"></span>
+      Agentic AI<span class="dot"></span>
+      Autonomous Robotics<span class="dot"></span>
+      Brain-Computer Interfaces<span class="dot"></span>
+    </span>
+    <span aria-hidden="true">
+      Distributed Systems<span class="dot"></span>
+      Agentic AI<span class="dot"></span>
+      Autonomous Robotics<span class="dot"></span>
+      Brain-Computer Interfaces<span class="dot"></span>
+      Distributed Systems<span class="dot"></span>
+      Agentic AI<span class="dot"></span>
+      Autonomous Robotics<span class="dot"></span>
+      Brain-Computer Interfaces<span class="dot"></span>
+    </span>
+  </div>
+</div>
+
+<!-- WORK SECTION -->
+<section class="section" id="work">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">// the work</div>
+        <h2>Four lanes,<br>Seven projects.</h2>
+      </div>
+      <div class="section-meta"></div>
+    </div>
+
+    <!-- ============ LANE 01: BACKEND & iOS ============ -->
+    <div class="lane">
+      <div class="lane-header">
+        <div class="lane-num">01</div>
+        <div class="lane-title">Backend &amp; iOS</div>
+        <div class="lane-tag">// distributed systems</div>
+      </div>
+
+      <!-- Siren Music -->
+      <article class="project">
+        <div class="project-visual" style="padding:20px;flex-direction:column;gap:0;align-items:stretch;justify-content:center">
+          <div class="brand-sticker">Siren · iOS</div>
+          <div style="display:flex;gap:12px;align-items:center;justify-content:center;width:100%;height:100%">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0">
+              <img src="siren_feed.png" alt="Siren social music feed" style="max-width:100%;max-height:340px;display:block">
+              <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:var(--ink);letter-spacing:.1em;text-transform:uppercase;opacity:.75">▌ social feed</div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0">
+              <img src="siren_match.png" alt="Siren AI music compatibility match - 85% with Tame Impala" style="max-width:100%;max-height:340px;display:block">
+              <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:#AC0CB0;letter-spacing:.1em;text-transform:uppercase">● ai match · 85%</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-tag live">live · 1.5k users</span>
+            <span class="project-tag">co-founder</span>
+          </div>
+          <h3>Siren Music</h3>
+          <p class="project-tagline">Social music discovery. <strong>4× award-winning.</strong> Spotify-mentored. 1.5K+ users.</p>
+          <div class="project-stats">
+            <div class="project-stat"><div class="v">4×</div><div class="l">Awards Won</div></div>
+            <div class="project-stat"><div class="v">97%</div><div class="l">Cost ↓</div></div>
+            <div class="project-stat"><div class="v">340→45ms</div><div class="l">Query Time</div></div>
+          </div>
+          <!-- award badges -->
+          <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center">
+            <span style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;opacity:.55;width:100%;margin-bottom:2px">▌ recognition</span>
+            <span style="font-family:var(--mono);font-size:10px;font-weight:600;padding:4px 8px;background:var(--orange);border:1.5px solid var(--ink)">🏆 Dreamer & Doer · UF Big Idea '26</span>
+            <span style="font-family:var(--mono);font-size:10px;font-weight:600;padding:4px 8px;background:var(--cream);border:1.5px solid var(--ink)">Best AI Startup · UF Big Idea '25</span>
+            <span style="font-family:var(--mono);font-size:10px;font-weight:600;padding:4px 8px;background:var(--cream);border:1.5px solid var(--ink)">#1 Social · Product Hunt</span>
+            <span style="font-family:var(--mono);font-size:10px;font-weight:600;padding:4px 8px;background:var(--cream);border:1.5px solid var(--ink)">UF Luby Micro-Grant</span>
+          </div>
+          <div class="project-arch">
+            <div class="project-arch-label">// system</div>
+            <svg class="arch-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+              <style>
+                .arch-box{fill:#FFFFFF;stroke:#030303;stroke-width:2}
+                .arch-box-orange{fill:#FFA54D;stroke:#030303;stroke-width:2}
+                .arch-box-dark{fill:#030303;stroke:#030303;stroke-width:2}
+                .arch-text{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;fill:#030303}
+                .arch-text-light{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;fill:#E7E8D3}
+                .arch-arrow{stroke:#030303;stroke-width:1.5;fill:none}
+                .arch-label{font-family:'JetBrains Mono',monospace;font-size:7px;fill:#030303;opacity:.6}
+              </style>
+              <!-- Flutter App -->
+              <rect class="arch-box-orange" x="4" y="50" width="78" height="32"/>
+              <text class="arch-text" x="14" y="63">FLUTTER</text>
+              <text class="arch-text" x="14" y="76">CLIENT</text>
+              <!-- arrow 1 -->
+              <line class="arch-arrow" x1="84" y1="66" x2="118" y2="66" marker-end="url(#a1)"/>
+              <text class="arch-label" x="86" y="60">REST</text>
+              <!-- Nginx LB -->
+              <rect class="arch-box" x="120" y="50" width="76" height="32"/>
+              <text class="arch-text" x="134" y="63">NGINX</text>
+              <text class="arch-text" x="134" y="76">LB</text>
+              <!-- arrow 2 -->
+              <line class="arch-arrow" x1="198" y1="66" x2="232" y2="66" marker-end="url(#a1)"/>
+              <!-- Go Gin -->
+              <rect class="arch-box-dark" x="234" y="50" width="86" height="32"/>
+              <text class="arch-text-light" x="246" y="63">GO/GIN</text>
+              <text class="arch-text-light" x="246" y="76">BACKEND</text>
+              <!-- arrow up to redis -->
+              <line class="arch-arrow" x1="320" y1="58" x2="362" y2="22" marker-end="url(#a1)"/>
+              <line class="arch-arrow" x1="320" y1="66" x2="362" y2="66" marker-end="url(#a1)"/>
+              <line class="arch-arrow" x1="320" y1="74" x2="362" y2="110" marker-end="url(#a1)"/>
+              <!-- redis -->
+              <rect class="arch-box" x="364" y="6" width="100" height="28"/>
+              <text class="arch-text" x="378" y="24">REDIS CACHE</text>
+              <!-- mongo -->
+              <rect class="arch-box" x="364" y="50" width="100" height="32"/>
+              <text class="arch-text" x="376" y="63">MONGODB</text>
+              <text class="arch-text" x="376" y="76">ATLAS</text>
+              <!-- spotify api -->
+              <rect class="arch-box-orange" x="364" y="96" width="100" height="28"/>
+              <text class="arch-text" x="370" y="114">SPOTIFY API</text>
+              <defs>
+                <marker id="a1" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#030303"/>
+                </marker>
+              </defs>
+            </svg>
+            <div class="project-stack" style="margin-top:14px">
+              <span>Go</span><span>Gin</span><span>Flutter</span><span>MongoDB</span><span>Redis</span><span>AWS EC2</span><span>Spotify SDK</span>
+            </div>
+          </div>
+          <a class="project-cta" href="https://sirenmusic.app" target="_blank">visit sirenmusic.app →</a>
+          <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--mono)">
+            <span style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;opacity:.55">▌ featured in</span>
+            <a href="https://warrington.ufl.edu/news/siren-music-uf-student-startup/" target="_blank" style="font-size:10px;font-weight:600;padding:3px 7px;background:var(--cream);border:1.5px solid var(--ink);text-decoration:none;color:var(--ink)">UF Warrington →</a>
+            <a href="https://www.alligator.org/article/2025/04/studentpreneurs-stream-stitch-and-style-their-way-to-success" target="_blank" style="font-size:10px;font-weight:600;padding:3px 7px;background:var(--cream);border:1.5px solid var(--ink);text-decoration:none;color:var(--ink)">The Alligator →</a>
+            <a href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7321692132652564481/" target="_blank" style="font-size:10px;font-weight:600;padding:3px 7px;background:var(--cream);border:1.5px solid var(--ink);text-decoration:none;color:var(--ink)">LinkedIn →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Apple Pay -->
+      <article class="project flip dark">
+        <div class="project-visual">
+          <div class="brand-sticker">Apple Pay · Summer 2025</div>
+          <!-- before/after latency chart -->
+          <svg viewBox="0 0 380 280" style="width:100%;max-width:380px">
+            <style>
+              .ap-axis{stroke:#E7E8D3;stroke-opacity:.2;stroke-width:1}
+              .ap-grid{stroke:#E7E8D3;stroke-opacity:.08;stroke-width:.5}
+              .ap-label{font-family:'JetBrains Mono',monospace;font-size:9px;fill:#E7E8D3;opacity:.6}
+              .ap-num{font-family:'JetBrains Mono',monospace;font-size:8px;fill:#E7E8D3;opacity:.5}
+              .ap-title{font-family:'Pixelify Sans',monospace;font-size:11px;font-weight:700;fill:#E7E8D3}
+            </style>
+            <text class="ap-title" x="20" y="20">P95 LATENCY · BEFORE → AFTER</text>
+            <text class="ap-label" x="20" y="34">peak traffic, 24h window</text>
+            <!-- y axis labels -->
+            <text class="ap-num" x="6" y="60">400ms</text>
+            <text class="ap-num" x="6" y="110">300ms</text>
+            <text class="ap-num" x="6" y="160">200ms</text>
+            <text class="ap-num" x="6" y="210">100ms</text>
+            <text class="ap-num" x="14" y="246">0</text>
+            <!-- grid -->
+            <line class="ap-grid" x1="40" y1="56" x2="370" y2="56"/>
+            <line class="ap-grid" x1="40" y1="106" x2="370" y2="106"/>
+            <line class="ap-grid" x1="40" y1="156" x2="370" y2="156"/>
+            <line class="ap-grid" x1="40" y1="206" x2="370" y2="206"/>
+            <line class="ap-axis" x1="40" y1="246" x2="370" y2="246"/>
+            <line class="ap-axis" x1="40" y1="50" x2="40" y2="246"/>
+            <!-- divider -->
+            <line x1="200" y1="50" x2="200" y2="246" stroke="#FFA54D" stroke-width="1" stroke-dasharray="3,3"/>
+            <text class="ap-label" x="148" y="262" fill="#ff5f57">// before: sync</text>
+            <text class="ap-label" x="226" y="262" fill="#34C830">// after: kafka</text>
+            <!-- before line -- erratic spikes -->
+            <polyline points="40,90 60,75 80,60 100,55 120,80 140,65 160,55 180,70 200,60"
+                      stroke="#ff5f57" stroke-width="2.5" fill="none"/>
+            <!-- annotations -->
+            <circle cx="100" cy="55" r="3" fill="#ff5f57"/>
+            <text class="ap-num" x="80" y="48" fill="#ff5f57">350ms</text>
+            <!-- after line -- flat low -->
+            <polyline points="200,60 220,222 240,228 260,225 280,228 300,225 320,229 340,226 360,228"
+                      stroke="#34C830" stroke-width="2.5" fill="none"/>
+            <circle cx="280" cy="228" r="3" fill="#34C830"/>
+            <text class="ap-num" x="262" y="222" fill="#34C830">~45ms</text>
+            <!-- improvement badge -->
+            <rect x="240" y="60" width="120" height="40" fill="#FFA54D" stroke="#E7E8D3" stroke-width="2"/>
+            <text x="252" y="78" font-family="Pixelify Sans" font-size="14" font-weight="700" fill="#030303">7× FASTER</text>
+            <text x="252" y="92" font-family="JetBrains Mono" font-size="8" fill="#030303">350 → &lt;50ms</text>
+          </svg>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-tag shipped">shipped · prod</span>
+            <span class="project-tag">apple pay</span>
+          </div>
+          <h3>Apple Pay<br>Latency Fix</h3>
+          <p class="project-tagline">Async <strong>Kafka pipeline</strong> replacing sync API calls. Fixed a critical Wallet vulnerability.</p>
+          <div class="project-stats">
+            <div class="project-stat"><div class="v">7×</div><div class="l">Faster</div></div>
+            <div class="project-stat"><div class="v">10+</div><div class="l">Metrics Tracked</div></div>
+            <div class="project-stat"><div class="v">Top 10</div><div class="l">/ 1,500 teams</div></div>
+          </div>
+          <div class="project-arch">
+            <div class="project-arch-label">// architecture</div>
+            <svg class="arch-svg" viewBox="0 0 480 140" xmlns="http://www.w3.org/2000/svg">
+              <style>
+                .ap-prod{fill:#FFA54D;stroke:#E7E8D3;stroke-width:2}
+                .ap-kafka{fill:#030303;stroke:#FFA54D;stroke-width:2}
+                .ap-cons{fill:#1a1a1a;stroke:#E7E8D3;stroke-width:2}
+                .ap-dlq{fill:#ff5f57;stroke:#030303;stroke-width:2}
+                .ap-t-d{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;fill:#030303}
+                .ap-t-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;fill:#E7E8D3}
+                .ap-arr{stroke:#E7E8D3;stroke-width:1.5;fill:none}
+                .ap-arr-red{stroke:#ff5f57;stroke-width:1.5;fill:none;stroke-dasharray:3,2}
+                .ap-tag{font-family:'JetBrains Mono',monospace;font-size:7px;fill:#E7E8D3;opacity:.6}
+                .ap-tag-red{font-family:'JetBrains Mono',monospace;font-size:7px;fill:#ff5f57;opacity:.9;font-weight:700}
+              </style>
+              <!-- Top row: producer → topic → consumer -->
+              <!-- Wallet (producer) -->
+              <rect class="ap-prod" x="4" y="18" width="86" height="32"/>
+              <text class="ap-t-d" x="16" y="40">WALLET API</text>
+              <!-- Arrow to Kafka -->
+              <line class="ap-arr" x1="92" y1="34" x2="138" y2="34" marker-end="url(#ap-m)"/>
+              <text class="ap-tag" x="96" y="28">PRODUCE</text>
+              <!-- Kafka Topic (single line, no confidential details) -->
+              <rect class="ap-kafka" x="140" y="18" width="130" height="32"/>
+              <text class="ap-t-l" x="170" y="40">KAFKA TOPIC</text>
+              <!-- Arrow to Consumer (labeled async) -->
+              <line class="ap-arr" x1="272" y1="34" x2="320" y2="34" marker-end="url(#ap-m)"/>
+              <text class="ap-tag" x="284" y="28">async</text>
+              <!-- Consumer -->
+              <rect class="ap-cons" x="322" y="18" width="86" height="32"/>
+              <text class="ap-t-l" x="334" y="40">CONSUMER</text>
+
+              <!-- Drain path from Consumer DOWN to DLQ (failures route here) -->
+              <path class="ap-arr-red" d="M 365 50 L 365 80 L 320 80 L 320 96" marker-end="url(#ap-m-r)"/>
+              <text class="ap-tag-red" x="370" y="72">failures</text>
+
+              <!-- DLQ as a 'bin' below the main flow -->
+              <rect class="ap-dlq" x="240" y="98" width="160" height="30"/>
+              <text class="ap-t-d" x="256" y="118">DEAD LETTER QUEUE</text>
+
+              <defs>
+                <marker id="ap-m" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#E7E8D3"/>
+                </marker>
+                <marker id="ap-m-r" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#ff5f57"/>
+                </marker>
+              </defs>
+            </svg>
+            <div class="project-stack" style="margin-top:14px">
+              <span>Java</span><span>Spring Boot</span><span>Kafka</span><span>JUnit</span><span>Mockito</span><span>Prometheus</span><span>Grafana</span>
+            </div>
+          </div>
+          <a class="project-cta" href="https://www.linkedin.com/feed/update/urn:li:activity:7380278758093733888/" target="_blank">read the apple announcement →</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============ LANE 02: AI ENGINEERING ============ -->
+    <div class="lane">
+      <div class="lane-header">
+        <div class="lane-num">02</div>
+        <div class="lane-title">AI Engineering</div>
+        <div class="lane-tag">// agentic systems</div>
+      </div>
+
+      <!-- SynthIA -->
+      <article class="project warm">
+        <div class="project-visual" style="background:#FFCD92">
+          <div class="brand-sticker" style="background:#030303;color:#FFA54D">SynthIA · v2</div>
+          <!-- Ableton-ish DAW screenshot mockup -->
+          <div style="width:100%;max-width:380px;background:#1a1a1a;border:3px solid #030303;box-shadow:6px 6px 0 0 #030303;font-family:var(--mono);overflow:hidden;border-radius:4px">
+            <div style="background:#0a0a0a;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333">
+              <span style="font-size:10px;color:#E7E8D3;font-weight:700;letter-spacing:.1em">ABLETON LIVE 12 — BEAT.als</span>
+              <span style="display:flex;gap:4px"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#34C830"></i></span>
+            </div>
+            <!-- track lanes -->
+            <div style="padding:8px;display:flex;flex-direction:column;gap:3px">
+              <div style="height:14px;background:linear-gradient(90deg, #FFA54D 0%, #FFA54D 65%, #444 65%, #444 100%);border:1px solid #555"></div>
+              <div style="height:14px;background:linear-gradient(90deg, #34C830 0%, #34C830 80%, #444 80%, #444 100%);border:1px solid #555"></div>
+              <div style="height:14px;background:linear-gradient(90deg, #AC0CB0 0%, #AC0CB0 45%, #444 45%, #444 100%);border:1px solid #555"></div>
+              <div style="height:14px;background:linear-gradient(90deg, #4DA8FF 0%, #4DA8FF 90%, #444 90%, #444 100%);border:1px solid #555"></div>
+              <div style="height:14px;background:linear-gradient(90deg, #FFC857 0%, #FFC857 30%, #444 30%, #444 100%);border:1px solid #555"></div>
+            </div>
+            <!-- chat panel -->
+            <div style="background:#030303;padding:10px;border-top:2px solid #FFA54D">
+              <div style="font-size:9px;color:#FFA54D;font-weight:700;letter-spacing:.12em;margin-bottom:6px">SYNTHIA</div>
+              <div style="background:#1a1a1a;padding:6px 8px;font-size:9px;color:#E7E8D3;line-height:1.5;border-left:2px solid #34C830;margin-bottom:4px">
+                make this drop hit harder
+              </div>
+              <div style="background:#1a1a1a;padding:6px 8px;font-size:9px;color:#5acfa6;line-height:1.5;border-left:2px solid #FFA54D">
+                ✓ added sub-bass at 808Hz<br>
+                ✓ sidechain on track 2<br>
+                ✓ +3dB on master @ drop
+              </div>
+              <div style="font-size:8px;color:#5acfa6;opacity:.5;margin-top:6px">▌ thinking · 3 tools called</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-tag concept">on-device · v2</span>
+            <span class="project-tag">solo</span>
+          </div>
+          <h3>SynthIA</h3>
+          <p class="project-tagline">5 open-weight models. <strong>One agent loop.</strong> Fully on-device. "Cursor for Ableton."</p>
+          <div class="project-stats">
+            <div class="project-stat"><div class="v">5</div><div class="l">Models</div></div>
+            <div class="project-stat"><div class="v">33</div><div class="l">Tools</div></div>
+            <div class="project-stat"><div class="v">0</div><div class="l">External APIs</div></div>
+          </div>
+          <div class="project-arch">
+            <div class="project-arch-label">// agent loop</div>
+            <svg class="arch-svg" viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg">
+              <style>
+                .sy-box{fill:#FFFFFF;stroke:#030303;stroke-width:2}
+                .sy-planner{fill:#030303;stroke:#FFA54D;stroke-width:2}
+                .sy-orange{fill:#FFA54D;stroke:#030303;stroke-width:2}
+                .sy-purple{fill:#AC0CB0;stroke:#030303;stroke-width:2}
+                .sy-t{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;fill:#030303}
+                .sy-t-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;fill:#E7E8D3}
+                .sy-tn{font-family:'JetBrains Mono',monospace;font-size:7px;fill:#030303;opacity:.7}
+                .sy-tn-l{font-family:'JetBrains Mono',monospace;font-size:7px;fill:#E7E8D3;opacity:.7}
+                .sy-arr{stroke:#030303;stroke-width:1.5;fill:none}
+              </style>
+              <!-- USER -->
+              <rect class="sy-box" x="200" y="4" width="80" height="26"/>
+              <text class="sy-t" x="222" y="20">USER</text>
+              <line class="sy-arr" x1="240" y1="32" x2="240" y2="56" marker-end="url(#sy-m)"/>
+              <!-- PLANNER -->
+              <rect class="sy-planner" x="160" y="58" width="160" height="44"/>
+              <text class="sy-t-l" x="172" y="74">PLANNER</text>
+              <text class="sy-t-l" x="172" y="86" style="font-size:8px">Gemma 4 26B (3.8B active)</text>
+              <text class="sy-tn-l" x="172" y="96">// step-by-step</text>
+              <!-- left to retrieval -->
+              <line class="sy-arr" x1="160" y1="80" x2="120" y2="80" marker-end="url(#sy-m)"/>
+              <rect class="sy-box" x="14" y="62" width="106" height="36"/>
+              <text class="sy-t" x="22" y="76">RETRIEVAL</text>
+              <text class="sy-tn" x="22" y="88">EmbeddingGemma</text>
+              <text class="sy-tn" x="22" y="96">templates · session</text>
+              <!-- right to ears -->
+              <line class="sy-arr" x1="320" y1="80" x2="360" y2="80" marker-end="url(#sy-m)"/>
+              <rect class="sy-box" x="362" y="58" width="116" height="44"/>
+              <text class="sy-t" x="370" y="72">EARS</text>
+              <text class="sy-tn" x="370" y="82">Demucs (Meta)</text>
+              <text class="sy-tn" x="370" y="91">Basic Pitch (Spotify)</text>
+              <text class="sy-tn" x="370" y="100">Music Flamingo (NV)</text>
+              <!-- planner down to executor -->
+              <line class="sy-arr" x1="240" y1="104" x2="240" y2="124" marker-end="url(#sy-m)"/>
+              <!-- EXECUTOR -->
+              <rect class="sy-orange" x="170" y="126" width="140" height="36"/>
+              <text class="sy-t" x="180" y="142">FUNCTIONGEMMA 270M</text>
+              <text class="sy-tn" x="180" y="155">QLoRA fine-tune · 33 tools</text>
+              <!-- down to dispatcher -->
+              <line class="sy-arr" x1="240" y1="164" x2="240" y2="180" marker-end="url(#sy-m)"/>
+              <!-- DISPATCHER -->
+              <rect class="sy-box" x="170" y="182" width="140" height="22"/>
+              <text class="sy-t" x="186" y="196">PYTHON DISPATCHER</text>
+              <!-- arrow down to ableton -->
+              <line class="sy-arr" x1="240" y1="206" x2="240" y2="218" marker-end="url(#sy-m)"/>
+              <!-- ableton bar -->
+              <rect class="sy-purple" x="100" y="218" width="280" height="2" fill="#AC0CB0"/>
+              <text class="sy-t" x="178" y="218" style="font-size:8px;fill:#FFA54D">ABLETON LIVE OBJECT MODEL · TCP 9877</text>
+              <defs>
+                <marker id="sy-m" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#030303"/>
+                </marker>
+              </defs>
+            </svg>
+            <div class="project-stack" style="margin-top:14px">
+              <span>Python</span><span>PyTorch</span><span>Gemma 4</span><span>QLoRA</span><span>MCP</span><span>TCP/RPC</span>
+            </div>
+          </div>
+          <a class="project-cta" href="https://youtu.be/-olwGtqP-Lw" target="_blank">▶ watch the 7-min demo →</a>
+        </div>
+      </article>
+
+      <!-- PhoneAssistant -->
+      <article class="project flip">
+        <div class="project-visual" style="padding:0;align-items:stretch;justify-content:center;background:#0a0a0a;overflow:hidden">
+          <div class="brand-sticker">PhoneAssistant · launch demo</div>
+          <a href="https://www.youtube.com/watch?v=PPr0i3nI7J0" target="_blank" rel="noopener" style="display:block;position:relative;width:100%;height:100%;min-height:340px;text-decoration:none;overflow:hidden">
+            <img src="phoneassistant_video.jpg" alt="PhoneAssistant launch video — 2 min demo" style="width:100%;height:100%;object-fit:cover;display:block">
+            <!-- gradient dim overlay so play button stays visible -->
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.55) 100%)"></div>
+            <!-- Play button -->
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:82px;height:82px;background:var(--orange);border:3px solid var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:5px 5px 0 0 var(--ink)">
+              <div style="width:0;height:0;border-left:24px solid var(--ink);border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:7px"></div>
+            </div>
+            <!-- Duration tag -->
+            <div style="position:absolute;bottom:12px;right:12px;font-family:var(--mono);font-size:11px;color:#fff;background:rgba(0,0,0,.85);padding:4px 8px;font-weight:700;border:1px solid #fff;letter-spacing:.06em">▶ 2:00</div>
+            <!-- Launch demo label -->
+            <div style="position:absolute;bottom:12px;left:12px;font-family:var(--mono);font-size:9px;color:var(--orange);letter-spacing:.12em;background:rgba(0,0,0,.85);padding:3px 7px;font-weight:700;border:1px solid var(--orange)">● LAUNCH DEMO · YOUTUBE</div>
+          </a>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-tag live">live</span>
+            <span class="project-tag">solo</span>
+          </div>
+          <h3>PhoneAssistant</h3>
+          <p class="project-tagline">Text or call any number. <strong>Your AI handles email + calendar.</strong></p>
+          <div class="project-stats">
+            <div class="project-stat"><div class="v">SMS</div><div class="l">+ Voice</div></div>
+            <div class="project-stat"><div class="v">2</div><div class="l">APIs Wired</div></div>
+            <div class="project-stat"><div class="v">∞</div><div class="l">Tasks Saved</div></div>
+          </div>
+          <div class="project-arch">
+            <div class="project-arch-label">// architecture</div>
+            <svg class="arch-svg" viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg">
+              <style>
+                .pa-box{fill:#FFFFFF;stroke:#030303;stroke-width:2}
+                .pa-orange{fill:#FFA54D;stroke:#030303;stroke-width:2}
+                .pa-dark{fill:#030303;stroke:#030303;stroke-width:2}
+                .pa-t{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;fill:#030303}
+                .pa-t-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;fill:#E7E8D3}
+                .pa-tn{font-family:'JetBrains Mono',monospace;font-size:7px;fill:#030303;opacity:.6}
+                .pa-arr{stroke:#030303;stroke-width:1.5;fill:none}
+              </style>
+              <!-- phone -->
+              <rect class="pa-orange" x="4" y="48" width="74" height="32"/>
+              <text class="pa-t" x="22" y="62">PHONE</text>
+              <text class="pa-tn" x="14" y="74">SMS · VOICE</text>
+              <!-- twilio -->
+              <line class="pa-arr" x1="80" y1="64" x2="118" y2="64" marker-end="url(#pa-m)"/>
+              <rect class="pa-box" x="120" y="48" width="80" height="32"/>
+              <text class="pa-t" x="138" y="62">TWILIO</text>
+              <text class="pa-tn" x="128" y="74">webhook</text>
+              <!-- agent loop -->
+              <line class="pa-arr" x1="202" y1="64" x2="240" y2="64" marker-end="url(#pa-m)"/>
+              <rect class="pa-dark" x="242" y="36" width="120" height="56"/>
+              <text class="pa-t-l" x="254" y="52">PYTHON AGENT</text>
+              <text class="pa-t-l" x="254" y="66" style="font-size:8px">Claude API loop</text>
+              <text class="pa-t-l" x="254" y="78" style="font-size:7px;opacity:.7">+ guardrails</text>
+              <text class="pa-t-l" x="254" y="88" style="font-size:7px;opacity:.7">LangSmith eval</text>
+              <!-- branches to gmail / calendar -->
+              <line class="pa-arr" x1="362" y1="50" x2="396" y2="20" marker-end="url(#pa-m)"/>
+              <line class="pa-arr" x1="362" y1="78" x2="396" y2="108" marker-end="url(#pa-m)"/>
+              <rect class="pa-box" x="398" y="6" width="78" height="28"/>
+              <text class="pa-t" x="412" y="24">GMAIL API</text>
+              <rect class="pa-box" x="398" y="94" width="78" height="28"/>
+              <text class="pa-t" x="408" y="112">CALENDAR API</text>
+              <defs>
+                <marker id="pa-m" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#030303"/>
+                </marker>
+              </defs>
+            </svg>
+            <div class="project-stack" style="margin-top:14px">
+              <span>Python</span><span>Twilio</span><span>Gmail API</span><span>Google Calendar</span><span>LangSmith</span>
+            </div>
+          </div>
+          <a class="project-cta" href="https://www.phoneassistant.com" target="_blank">visit phoneassistant.com →</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============ LANE 03: ROBOTICS ============ -->
+    <div class="lane">
+      <div class="lane-header">
+        <div class="lane-num">03</div>
+        <div class="lane-title">Robotics &amp; Autonomy</div>
+        <div class="lane-tag">// drones · slam · sim</div>
+      </div>
+
+      <!-- GatorMatix -->
+      <article class="project dark">
+        <div class="project-visual" style="padding:0;flex-direction:column;align-items:stretch;justify-content:flex-start;min-height:auto">
+          <div class="brand-sticker">S.W.A.M.P. · IPPD Team 13</div>
+          <!-- Three real images: physical drone + Gazebo SITL + real-world lab capture -->
+          <div style="display:flex;flex-direction:column;width:100%;height:100%;min-height:540px">
+            <!-- TOP: real SWAMP hexacopter -->
+            <div style="flex:1;background:#0a0a0a;display:flex;align-items:center;justify-content:center;border-bottom:2px solid #FFA54D;position:relative;padding:8px;overflow:hidden;min-height:170px">
+              <img src="swamp.jpg" alt="S.W.A.M.P. autonomous hexacopter" style="max-width:100%;max-height:170px;object-fit:contain">
+              <div style="position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:8px;color:#FFA54D;letter-spacing:.12em;background:rgba(0,0,0,.85);padding:3px 7px;font-weight:700;border:1px solid #FFA54D">▌ HARDWARE</div>
+            </div>
+            <!-- MIDDLE: Gazebo SITL + RViz Point-LIO -->
+            <div style="flex:1;background:#0a0a0a;position:relative;overflow:hidden;border-bottom:2px solid #34C830;min-height:130px">
+              <img src="slam.jpg" alt="Gazebo SITL + RViz Point-LIO SLAM trajectory" style="width:100%;height:100%;object-fit:cover;display:block">
+              <div style="position:absolute;bottom:8px;left:8px;font-family:var(--mono);font-size:8px;color:#34C830;letter-spacing:.12em;background:rgba(0,0,0,.85);padding:3px 7px;font-weight:700;border:1px solid #34C830">● SIMULATION · POINT-LIO TRACE</div>
+            </div>
+            <!-- BOTTOM: Real-world Point-LIO 3D map from the lab -->
+            <div style="flex:1.2;background:#0a0a0a;position:relative;overflow:hidden;min-height:200px">
+              <img src="lab_pointcloud.jpg" alt="Real-world Point-LIO 3D map reconstruction from the lab" style="width:100%;height:100%;object-fit:cover;display:block">
+              <div style="position:absolute;bottom:8px;left:8px;font-family:var(--mono);font-size:8px;color:#AC0CB0;letter-spacing:.12em;background:rgba(0,0,0,.85);padding:3px 7px;font-weight:700;border:1px solid #AC0CB0">● REAL-WORLD · LAB CAPTURE</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-tag concept">capstone · in flight</span>
+            <span class="project-tag">software lead</span>
+          </div>
+          <h3>GatorMatix<br>Drone</h3>
+          <p class="project-tagline">Autonomous indoor 3D mapping hexacopter. <strong>I lead the software side.</strong></p>
+          <div class="project-stats">
+            <div class="project-stat"><div class="v">7</div><div class="l">Engineers</div></div>
+            <div class="project-stat"><div class="v">3D</div><div class="l">LiDAR SLAM</div></div>
+            <div class="project-stat"><div class="v">Real</div><div class="l">World Mapped</div></div>
+          </div>
+          <div class="project-arch">
+            <div class="project-arch-label">// autonomy stack</div>
+            <svg class="arch-svg" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+              <style>
+                .gm-box{fill:#1a1a1a;stroke:#E7E8D3;stroke-width:2}
+                .gm-orange{fill:#FFA54D;stroke:#030303;stroke-width:2}
+                .gm-green{fill:#34C830;stroke:#030303;stroke-width:2}
+                .gm-purple{fill:#AC0CB0;stroke:#E7E8D3;stroke-width:2}
+                .gm-t{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;fill:#E7E8D3}
+                .gm-t-d{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;fill:#030303}
+                .gm-tn{font-family:'JetBrains Mono',monospace;font-size:7px;fill:#E7E8D3;opacity:.6}
+                .gm-tn-d{font-family:'JetBrains Mono',monospace;font-size:7px;fill:#030303;opacity:.7}
+                .gm-arr{stroke:#FFA54D;stroke-width:1.5;fill:none}
+              </style>
+              <!-- SENSORS row -->
+              <rect class="gm-orange" x="4" y="8" width="100" height="34"/>
+              <text class="gm-t-d" x="14" y="24">3D LiDAR</text>
+              <text class="gm-tn-d" x="14" y="36">Unitree L2 · 30Hz</text>
+              <rect class="gm-orange" x="4" y="48" width="100" height="34"/>
+              <text class="gm-t-d" x="14" y="64">CAMERA + IMU</text>
+              <text class="gm-tn-d" x="14" y="76">colorized maps</text>
+              <!-- arrow to SLAM -->
+              <line class="gm-arr" x1="106" y1="46" x2="148" y2="46" marker-end="url(#gm-m)"/>
+              <!-- SLAM -->
+              <rect class="gm-box" x="150" y="22" width="116" height="46"/>
+              <text class="gm-t" x="166" y="40">POINT-LIO SLAM</text>
+              <text class="gm-tn" x="166" y="54">tightly-coupled</text>
+              <text class="gm-tn" x="166" y="62">LiDAR-inertial</text>
+              <!-- arrow right to planner -->
+              <line class="gm-arr" x1="268" y1="46" x2="310" y2="46" marker-end="url(#gm-m)"/>
+              <!-- PLANNER -->
+              <rect class="gm-purple" x="312" y="8" width="166" height="34" opacity="0.35" stroke-dasharray="4,3"/>
+              <text class="gm-t" x="322" y="22" opacity="0.6">GLOBAL: NAV2 *</text>
+              <text class="gm-tn" x="322" y="32" opacity="0.55" style="font-size:6px">* explored, not in final</text>
+              <rect class="gm-purple" x="312" y="48" width="166" height="34"/>
+              <text class="gm-t" x="322" y="64">LOCAL: EGO-PLANNER</text>
+              <text class="gm-tn" x="322" y="76">trajectory opt · final</text>
+              <!-- down arrow from planners -->
+              <line class="gm-arr" x1="394" y1="84" x2="394" y2="108" marker-end="url(#gm-m)"/>
+              <!-- offboard control -->
+              <rect class="gm-box" x="320" y="110" width="160" height="34"/>
+              <text class="gm-t" x="332" y="126">OFFBOARD CTL (C++)</text>
+              <text class="gm-tn" x="332" y="138">ROS2 Humble · MAVLink</text>
+              <!-- down -->
+              <line class="gm-arr" x1="400" y1="146" x2="400" y2="166" marker-end="url(#gm-m)"/>
+              <!-- PX4 -->
+              <rect class="gm-green" x="320" y="168" width="160" height="28"/>
+              <text class="gm-t-d" x="334" y="186">PX4 FLIGHT CTL</text>
+              <!-- left side: SITL block (parallel) -->
+              <rect class="gm-orange" x="14" y="118" width="180" height="80" stroke-dasharray="4,4"/>
+              <text class="gm-t-d" x="24" y="136">GAZEBO SITL</text>
+              <text class="gm-tn-d" x="24" y="150">UF HiPerGator HPC</text>
+              <text class="gm-tn-d" x="24" y="162">Software-in-the-Loop</text>
+              <text class="gm-tn-d" x="24" y="178">// validates everything</text>
+              <text class="gm-tn-d" x="24" y="190">// before hardware flies</text>
+              <!-- arrow from SITL up into stack -->
+              <line class="gm-arr" x1="194" y1="158" x2="218" y2="158" stroke-dasharray="3,2" marker-end="url(#gm-m)"/>
+              <text class="gm-tn" x="204" y="152">test</text>
+              <defs>
+                <marker id="gm-m" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#FFA54D"/>
+                </marker>
+              </defs>
+            </svg>
+            <div class="project-stack" style="margin-top:14px">
+              <span>C++</span><span>ROS 2</span><span>PX4</span><span>Gazebo</span><span>EGO-Planner</span><span>Point-LIO</span><span>NvBlox</span><span>MAVLink</span><span>Unitree L2</span><span>HiPerGator</span><span style="text-decoration:line-through;opacity:.45" title="explored, not in final design">Nav2*</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============ LANE 04: BCI ============ -->
+    <div class="lane">
+      <div class="lane-header">
+        <div class="lane-num">04</div>
+        <div class="lane-title">Brain-Computer Interfaces</div>
+        <div class="lane-tag">// non-invasive · eeg</div>
+      </div>
+
+      <!-- MindHive -->
+      <article class="project flip dark">
+        <div class="project-visual" style="padding:0;align-items:stretch;justify-content:flex-start;min-height:auto;background:#1a2645">
+          <div class="brand-sticker" style="background:#FFA54D">MindHive · Helmet Rev A</div>
+          <!-- Real engineering blueprint: side profile + top-down with dimensional callouts -->
+          <div style="width:100%;height:100%;min-height:380px;display:flex;align-items:center;justify-content:center;padding:14px;background:#1a2645;position:relative">
+            <img src="mindhive_blueprint.jpg" alt="MindHive helmet engineering blueprint — side and top views with dimensional callouts" style="max-width:100%;max-height:100%;object-fit:contain;display:block">
+            <div style="position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:8px;color:#FFA54D;letter-spacing:.12em;background:rgba(0,0,0,.8);padding:3px 7px;font-weight:700;border:1px solid #FFA54D">▌ ENGINEERING DRAWING</div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-tag concept">prototype</span>
+            <span class="project-tag">team</span>
+          </div>
+          <h3>MindHive</h3>
+          <p class="project-tagline">Helmet that knows when a soldier is about to <strong>microsleep</strong>. EEG + haptics + commander dashboard.</p>
+          <div class="project-stats">
+            <div class="project-stat"><div class="v">85-92%</div><div class="l">Drowsiness Acc.</div></div>
+            <div class="project-stat"><div class="v">$500K</div><div class="l">24mo Seed</div></div>
+            <div class="project-stat"><div class="v">$1.7T</div><div class="l">Defense TAM '24</div></div>
+          </div>
+          <div class="project-arch">
+            <div class="project-arch-label">// signal pipeline · engineering schematic</div>
+            <div style="background:#fff;padding:14px;margin-top:4px;border:2px solid var(--cream)">
+              <img src="mindhive_pipeline.png" alt="MindHive signal pipeline block diagram — Fp1/Fp2/O1/O2 → TI ADS1299-4 ADC → bandpass + IMU artifact rejection → feature extraction → Nordic nRF52840 classifier → haptic + BLE dashboard" style="width:100%;height:auto;display:block">
+            </div>
+            <div class="project-stack" style="margin-top:14px">
+              <span>C/C++</span><span>Embedded</span><span>EEG DSP</span><span>Edge ML</span><span>TI ADS1299</span><span>Nordic nRF52840</span>
+            </div>
+          </div>
+          <a class="project-cta" href="https://docs.google.com/presentation/d/16axO_ntiuSpEph6cX70LZZNx6-O2By00dgNduw-vPeg/edit?usp=sharing" target="_blank">view the full deck →</a>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">// timeline</div>
+        <h2>The path so far</h2>
+      </div>
+      <div class="section-meta">Apple, twice. UF capstone. Self-funded co-founder work.</div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-cell">
+        <div class="when">'24 → now</div>
+        <div class="where">Siren</div>
+        <div class="what">co-founder · cto</div>
+      </div>
+      <div class="tl-cell">
+        <div class="when">May–Aug '25</div>
+        <div class="where">Apple Pay</div>
+        <div class="what">SWE intern</div>
+      </div>
+      <div class="tl-cell">
+        <div class="when">Aug '25 → now</div>
+        <div class="where">JWM Eng.</div>
+        <div class="what">software lead · IPPD</div>
+      </div>
+      <div class="tl-cell featured">
+        <div class="when">Summer '26</div>
+        <div class="where">Apple Cash</div>
+        <div class="what">incoming SWE</div>
+      </div>
+      <div class="tl-cell">
+        <div class="when">May '26</div>
+        <div class="where">Graduating</div>
+        <div class="what">UF · CS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="section" id="stack">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">// stack</div>
+        <h2>Tools of choice</h2>
+      </div>
+      <div class="section-meta">Pick the right tool for the job. These are the ones I keep reaching for.</div>
+    </div>
+
+    <h3 class="stack-group-title">Languages</h3>
+    <div class="stack-list">
+      <div class="chip"><span class="dot"></span>Go</div>
+      <div class="chip"><span class="dot"></span>Python</div>
+      <div class="chip"><span class="dot"></span>Java</div>
+      <div class="chip"><span class="dot"></span>Swift</div>
+      <div class="chip"><span class="dot"></span>Rust</div>
+      <div class="chip"><span class="dot"></span>C / C++</div>
+      <div class="chip"><span class="dot"></span>JavaScript</div>
+      <div class="chip"><span class="dot"></span>SQL</div>
+    </div>
+
+    <h3 class="stack-group-title">Backend &amp; Infra</h3>
+    <div class="stack-list">
+      <div class="chip"><span class="dot"></span>Spring Boot</div>
+      <div class="chip"><span class="dot"></span>Gin</div>
+      <div class="chip"><span class="dot"></span>Apache Kafka</div>
+      <div class="chip"><span class="dot"></span>Redis</div>
+      <div class="chip"><span class="dot"></span>PostgreSQL</div>
+      <div class="chip"><span class="dot"></span>MongoDB</div>
+      <div class="chip"><span class="dot"></span>WebSockets</div>
+      <div class="chip"><span class="dot"></span>AWS EC2</div>
+      <div class="chip"><span class="dot"></span>Docker</div>
+      <div class="chip"><span class="dot"></span>Kubernetes</div>
+      <div class="chip"><span class="dot"></span>Nginx</div>
+      <div class="chip"><span class="dot"></span>Grafana</div>
+    </div>
+
+    <h3 class="stack-group-title">AI / ML</h3>
+    <div class="stack-list">
+      <div class="chip"><span class="dot"></span>PyTorch</div>
+      <div class="chip"><span class="dot"></span>Hugging Face</div>
+      <div class="chip"><span class="dot"></span>QLoRA</div>
+      <div class="chip"><span class="dot"></span>MCP</div>
+      <div class="chip"><span class="dot"></span>LangSmith</div>
+      <div class="chip"><span class="dot"></span>Claude API</div>
+      <div class="chip"><span class="dot"></span>Gemma</div>
+    </div>
+
+    <h3 class="stack-group-title">Robotics</h3>
+    <div class="stack-list">
+      <div class="chip"><span class="dot"></span>ROS 2</div>
+      <div class="chip"><span class="dot"></span>Gazebo</div>
+      <div class="chip"><span class="dot"></span>PX4</div>
+      <div class="chip"><span class="dot"></span>MAVLink</div>
+      <div class="chip"><span class="dot"></span>Nav2</div>
+      <div class="chip"><span class="dot"></span>EGO-Planner</div>
+      <div class="chip"><span class="dot"></span>Point-LIO</div>
+      <div class="chip"><span class="dot"></span>NvBlox</div>
+      <div class="chip"><span class="dot"></span>Isaac Sim</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">// say hi</div>
+        <h2>Let's build.</h2>
+      </div>
+      <div class="section-meta" style="color:var(--cream);opacity:.7">SWE roles, summer 2026.</div>
+    </div>
+
+    <div class="contact-grid">
+      <p class="contact-pitch">
+        Working on something <strong>hard and real?</strong><br>
+        I want in.
+      </p>
+
+      <div class="contact-list">
+        <a class="contact-row" href="mailto:jatinverma4986@hotmail.com">
+          <div><div class="label">Email</div><div class="val">jatinverma4986@hotmail.com</div></div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="contact-row" href="https://linkedin.com/in/jatinverma4986" target="_blank" rel="noopener">
+          <div><div class="label">LinkedIn</div><div class="val">in/jatinverma4986</div></div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="contact-row" href="https://github.com/jvermaa" target="_blank" rel="noopener">
+          <div><div class="label">GitHub</div><div class="val">@jvermaa</div></div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="contact-row" href="https://sirenmusic.app" target="_blank" rel="noopener">
+          <div><div class="label">Side Project</div><div class="val">sirenmusic.app</div></div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <span>© 2026 Jatin Verma</span>
+    <span style="opacity:.5;margin:0 12px">·</span>
+    <span style="opacity:.7">Built with HTML, CSS, and stubbornness</span>
+  </div>
+  <div><a href="#top">↑ back to top</a></div>
+</footer>
+
+</body>
+</html>
