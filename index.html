@@ -198,8 +198,40 @@
   @media (max-width:680px){.section-meta{text-align:left}}
 
   /* ========== LANE HEADER ========== */
-  .lane{margin-bottom:80px}
+  .lane{margin-bottom:80px;scroll-margin-top:90px}
   .lane:last-child{margin-bottom:0}
+
+  /* lane jump nav */
+  .lane-jump{
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    margin-bottom:42px;padding:14px 18px;
+    border:2px dashed var(--ink);background:var(--paper);
+  }
+  .lane-jump-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+    text-transform:uppercase;font-weight:700;opacity:.55;margin-right:8px;
+  }
+  .lane-jump-link{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:12px;font-weight:700;
+    padding:6px 12px;border:2px solid var(--ink);background:var(--cream);
+    text-decoration:none;color:var(--ink);
+    transition:transform .12s, box-shadow .12s, background .12s;
+  }
+  .lane-jump-link:hover{
+    background:var(--orange);
+    transform:translate(-2px,-2px);
+    box-shadow:2px 2px 0 0 var(--ink);
+  }
+  .lane-jump-num{
+    font-family:var(--display);font-weight:700;
+    color:var(--orange-deep);font-size:15px;line-height:1;
+  }
+  .lane-jump-link:hover .lane-jump-num{color:var(--ink)}
+  @media (max-width:600px){
+    .lane-jump-name{display:none}
+    .lane-jump-num{font-size:18px;padding:0 2px}
+  }
   .lane-header{
     display:flex;align-items:center;gap:18px;margin-bottom:28px;
     padding-bottom:18px;border-bottom:var(--bw) solid var(--ink);
@@ -378,8 +410,80 @@
   }
   footer a:hover{color:var(--orange)}
 
-  .reveal{opacity:0;transform:translateY(20px);animation:reveal .7s cubic-bezier(.2,.7,.3,1) forwards}
+  /* ========== CHIP USAGE MODAL ========== */
+  .chip-modal{
+    position:fixed;inset:0;z-index:100;
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    opacity:0;pointer-events:none;
+    transition:opacity .18s ease;
+  }
+  .chip-modal.is-open{opacity:1;pointer-events:auto}
+  .chip-modal-backdrop{
+    position:absolute;inset:0;
+    background:rgba(3,3,3,.7);
+    cursor:pointer;
+  }
+  .chip-modal-card{
+    position:relative;background:var(--cream);
+    border:3px solid var(--ink);box-shadow:8px 8px 0 0 var(--orange);
+    max-width:520px;width:100%;
+    max-height:80vh;overflow-y:auto;
+    padding:26px 28px;
+    transform:translateY(20px);
+    transition:transform .22s cubic-bezier(.2,.7,.3,1);
+  }
+  .chip-modal.is-open .chip-modal-card{transform:translateY(0)}
+  .chip-modal-close{
+    position:absolute;top:10px;right:12px;
+    width:32px;height:32px;
+    background:var(--paper);border:2px solid var(--ink);
+    font-family:var(--mono);font-size:18px;font-weight:700;line-height:1;
+    cursor:pointer;color:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .12s;
+  }
+  .chip-modal-close:hover{background:var(--orange)}
+  .chip-modal-header{
+    display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+    margin-bottom:18px;padding-bottom:14px;
+    border-bottom:2px dashed var(--ink);
+  }
+  .chip-modal-title{
+    font-family:var(--display);font-size:34px;font-weight:700;
+    line-height:1;color:var(--ink);
+  }
+  .chip-modal-subtitle{
+    font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+    text-transform:uppercase;font-weight:700;opacity:.55;
+  }
+  .chip-modal-body .usage-row{
+    padding:12px 0;border-bottom:1px dashed rgba(0,0,0,.18);
+  }
+  .chip-modal-body .usage-row:last-child{border-bottom:none}
+  .chip-modal-body .usage-project{
+    font-family:var(--display);font-size:20px;font-weight:700;
+    margin-bottom:4px;line-height:1.1;
+  }
+  .chip-modal-body .usage-detail{
+    font-family:var(--body);font-size:14px;line-height:1.45;
+  }
+  .chip-modal-body .usage-empty{
+    font-family:var(--mono);font-size:13px;opacity:.6;text-align:center;
+    padding:20px 0;
+  }
+
+  /* signal that a chip is clickable */
+  .chip.chip-active{cursor:pointer;position:relative}
+  .chip.chip-active::after{
+    content:"▸";
+    font-family:var(--mono);font-size:11px;
+    opacity:.35;margin-left:auto;padding-left:8px;
+    transition:opacity .12s, transform .12s;
+  }
+  .chip.chip-active:hover::after{opacity:1;transform:translateX(2px)}
   @keyframes reveal{to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(20px);animation:reveal .7s cubic-bezier(.2,.7,.3,1) forwards}
   .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}.d5{animation-delay:.45s}
 
   /* ========== INLINE VISUAL STYLES ========== */
@@ -567,8 +671,17 @@
       <div class="section-meta"></div>
     </div>
 
+    <!-- jump-to-lane nav -->
+    <nav class="lane-jump" aria-label="Jump to lane">
+      <span class="lane-jump-label">▌ jump to</span>
+      <a href="#lane-backend" class="lane-jump-link"><span class="lane-jump-num">01</span><span class="lane-jump-name">Backend &amp; iOS</span></a>
+      <a href="#lane-ai" class="lane-jump-link"><span class="lane-jump-num">02</span><span class="lane-jump-name">AI Engineering</span></a>
+      <a href="#lane-robotics" class="lane-jump-link"><span class="lane-jump-num">03</span><span class="lane-jump-name">Robotics</span></a>
+      <a href="#lane-bci" class="lane-jump-link"><span class="lane-jump-num">04</span><span class="lane-jump-name">BCI</span></a>
+    </nav>
+
     <!-- ============ LANE 01: BACKEND & iOS ============ -->
-    <div class="lane">
+    <div class="lane" id="lane-backend">
       <div class="lane-header">
         <div class="lane-num">01</div>
         <div class="lane-title">Backend &amp; iOS</div>
@@ -581,22 +694,21 @@
           <div class="brand-sticker">Siren · iOS</div>
           <div style="display:flex;gap:12px;align-items:center;justify-content:center;width:100%;height:100%">
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0">
-              <img src="siren_feed.png" alt="Siren social music feed" style="max-width:100%;max-height:340px;display:block">
+              <img loading="lazy" decoding="async" src="siren_feed.png" alt="Siren social music feed" style="max-width:100%;max-height:340px;display:block">
               <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:var(--ink);letter-spacing:.1em;text-transform:uppercase;opacity:.75">▌ social feed</div>
             </div>
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0">
-              <img src="siren_match.png" alt="Siren AI music compatibility match - 85% with Tame Impala" style="max-width:100%;max-height:340px;display:block">
+              <img loading="lazy" decoding="async" src="siren_match.png" alt="Siren AI music compatibility match - 85% with Tame Impala" style="max-width:100%;max-height:340px;display:block">
               <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:#AC0CB0;letter-spacing:.1em;text-transform:uppercase">● ai match · 85%</div>
             </div>
           </div>
         </div>
         <div class="project-content">
           <div class="project-meta">
-            <span class="project-tag live">live · 1.5k users</span>
-            <span class="project-tag">co-founder</span>
+            <span class="project-tag shipped">shipped · 1.5k users</span>
           </div>
           <h3>Siren Music</h3>
-          <p class="project-tagline">Social music discovery. <strong>4× award-winning.</strong> Spotify-mentored. 1.5K+ users.</p>
+          <p class="project-tagline">Co-founded 2024 → April 2026. Social music discovery. <strong>4× award-winning.</strong> Spotify-mentored.</p>
           <div class="project-stats">
             <div class="project-stat"><div class="v">4×</div><div class="l">Awards Won</div></div>
             <div class="project-stat"><div class="v">97%</div><div class="l">Cost ↓</div></div>
@@ -725,7 +837,6 @@
         <div class="project-content">
           <div class="project-meta">
             <span class="project-tag shipped">shipped · prod</span>
-            <span class="project-tag">apple pay</span>
           </div>
           <h3>Apple Pay<br>Latency Fix</h3>
           <p class="project-tagline">Async <strong>Kafka pipeline</strong> replacing sync API calls. Fixed a critical Wallet vulnerability.</p>
@@ -793,7 +904,7 @@
     </div>
 
     <!-- ============ LANE 02: AI ENGINEERING ============ -->
-    <div class="lane">
+    <div class="lane" id="lane-ai">
       <div class="lane-header">
         <div class="lane-num">02</div>
         <div class="lane-title">AI Engineering</div>
@@ -836,7 +947,6 @@
         <div class="project-content">
           <div class="project-meta">
             <span class="project-tag concept">on-device · v2</span>
-            <span class="project-tag">solo</span>
           </div>
           <h3>SynthIA</h3>
           <p class="project-tagline">5 open-weight models. <strong>One agent loop.</strong> Fully on-device. "Cursor for Ableton."</p>
@@ -916,7 +1026,7 @@
         <div class="project-visual" style="padding:0;align-items:stretch;justify-content:center;background:#0a0a0a;overflow:hidden">
           <div class="brand-sticker">PhoneAssistant · launch demo</div>
           <a href="https://www.youtube.com/watch?v=PPr0i3nI7J0" target="_blank" rel="noopener" style="display:block;position:relative;width:100%;height:100%;min-height:340px;text-decoration:none;overflow:hidden">
-            <img src="phoneassistant_video.jpg" alt="PhoneAssistant launch video — 2 min demo" style="width:100%;height:100%;object-fit:cover;display:block">
+            <img loading="lazy" decoding="async" src="phoneassistant_video.jpg" alt="PhoneAssistant launch video — 2 min demo" style="width:100%;height:100%;object-fit:cover;display:block">
             <!-- gradient dim overlay so play button stays visible -->
             <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.55) 100%)"></div>
             <!-- Play button -->
@@ -932,7 +1042,6 @@
         <div class="project-content">
           <div class="project-meta">
             <span class="project-tag live">live</span>
-            <span class="project-tag">solo</span>
           </div>
           <h3>PhoneAssistant</h3>
           <p class="project-tagline">Text or call any number. <strong>Your AI handles email + calendar.</strong></p>
@@ -992,7 +1101,7 @@
     </div>
 
     <!-- ============ LANE 03: ROBOTICS ============ -->
-    <div class="lane">
+    <div class="lane" id="lane-robotics">
       <div class="lane-header">
         <div class="lane-num">03</div>
         <div class="lane-title">Robotics &amp; Autonomy</div>
@@ -1007,17 +1116,17 @@
           <div style="display:flex;flex-direction:column;width:100%;height:100%;min-height:540px">
             <!-- TOP: real SWAMP hexacopter -->
             <div style="flex:1;background:#0a0a0a;display:flex;align-items:center;justify-content:center;border-bottom:2px solid #FFA54D;position:relative;padding:8px;overflow:hidden;min-height:170px">
-              <img src="swamp.jpg" alt="S.W.A.M.P. autonomous hexacopter" style="max-width:100%;max-height:170px;object-fit:contain">
+              <img loading="lazy" decoding="async" src="swamp.jpg" alt="S.W.A.M.P. autonomous hexacopter" style="max-width:100%;max-height:170px;object-fit:contain">
               <div style="position:absolute;top:8px;right:8px;font-family:var(--mono);font-size:8px;color:#FFA54D;letter-spacing:.12em;background:rgba(0,0,0,.85);padding:3px 7px;font-weight:700;border:1px solid #FFA54D">▌ HARDWARE</div>
             </div>
             <!-- MIDDLE: Gazebo SITL + RViz Point-LIO -->
             <div style="flex:1;background:#0a0a0a;position:relative;overflow:hidden;border-bottom:2px solid #34C830;min-height:130px">
-              <img src="slam.jpg" alt="Gazebo SITL + RViz Point-LIO SLAM trajectory" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img loading="lazy" decoding="async" src="slam.jpg" alt="Gazebo SITL + RViz Point-LIO SLAM trajectory" style="width:100%;height:100%;object-fit:cover;display:block">
               <div style="position:absolute;bottom:8px;left:8px;font-family:var(--mono);font-size:8px;color:#34C830;letter-spacing:.12em;background:rgba(0,0,0,.85);padding:3px 7px;font-weight:700;border:1px solid #34C830">● SIMULATION · POINT-LIO TRACE</div>
             </div>
             <!-- BOTTOM: Real-world Point-LIO 3D map from the lab -->
             <div style="flex:1.2;background:#0a0a0a;position:relative;overflow:hidden;min-height:200px">
-              <img src="lab_pointcloud.jpg" alt="Real-world Point-LIO 3D map reconstruction from the lab" style="width:100%;height:100%;object-fit:cover;display:block">
+              <img loading="lazy" decoding="async" src="lab_pointcloud.jpg" alt="Real-world Point-LIO 3D map reconstruction from the lab" style="width:100%;height:100%;object-fit:cover;display:block">
               <div style="position:absolute;bottom:8px;left:8px;font-family:var(--mono);font-size:8px;color:#AC0CB0;letter-spacing:.12em;background:rgba(0,0,0,.85);padding:3px 7px;font-weight:700;border:1px solid #AC0CB0">● REAL-WORLD · LAB CAPTURE</div>
             </div>
           </div>
@@ -1025,7 +1134,6 @@
         <div class="project-content">
           <div class="project-meta">
             <span class="project-tag concept">capstone · in flight</span>
-            <span class="project-tag">software lead</span>
           </div>
           <h3>GatorMatix<br>Drone</h3>
           <p class="project-tagline">Autonomous indoor 3D mapping hexacopter. <strong>I lead the software side.</strong></p>
@@ -1107,7 +1215,7 @@
     </div>
 
     <!-- ============ LANE 04: BCI ============ -->
-    <div class="lane">
+    <div class="lane" id="lane-bci">
       <div class="lane-header">
         <div class="lane-num">04</div>
         <div class="lane-title">Brain-Computer Interfaces</div>
@@ -1120,14 +1228,13 @@
           <div class="brand-sticker" style="background:#FFA54D">MindHive · Helmet Rev A</div>
           <!-- Real engineering blueprint: side profile + top-down with dimensional callouts -->
           <div style="width:100%;height:100%;min-height:380px;display:flex;align-items:center;justify-content:center;padding:14px;background:#1a2645;position:relative">
-            <img src="mindhive_blueprint.jpg" alt="MindHive helmet engineering blueprint — side and top views with dimensional callouts" style="max-width:100%;max-height:100%;object-fit:contain;display:block">
+            <img loading="lazy" decoding="async" src="mindhive_blueprint.jpg" alt="MindHive helmet engineering blueprint — side and top views with dimensional callouts" style="max-width:100%;max-height:100%;object-fit:contain;display:block">
             <div style="position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:8px;color:#FFA54D;letter-spacing:.12em;background:rgba(0,0,0,.8);padding:3px 7px;font-weight:700;border:1px solid #FFA54D">▌ ENGINEERING DRAWING</div>
           </div>
         </div>
         <div class="project-content">
           <div class="project-meta">
             <span class="project-tag concept">prototype</span>
-            <span class="project-tag">team</span>
           </div>
           <h3>MindHive</h3>
           <p class="project-tagline">Helmet that knows when a soldier is about to <strong>microsleep</strong>. EEG + haptics + commander dashboard.</p>
@@ -1139,7 +1246,7 @@
           <div class="project-arch">
             <div class="project-arch-label">// signal pipeline · engineering schematic</div>
             <div style="background:#fff;padding:14px;margin-top:4px;border:2px solid var(--cream)">
-              <img src="mindhive_pipeline.png" alt="MindHive signal pipeline block diagram — Fp1/Fp2/O1/O2 → TI ADS1299-4 ADC → bandpass + IMU artifact rejection → feature extraction → Nordic nRF52840 classifier → haptic + BLE dashboard" style="width:100%;height:auto;display:block">
+              <img loading="lazy" decoding="async" src="mindhive_pipeline.png" alt="MindHive signal pipeline block diagram — Fp1/Fp2/O1/O2 → TI ADS1299-4 ADC → bandpass + IMU artifact rejection → feature extraction → Nordic nRF52840 classifier → haptic + BLE dashboard" style="width:100%;height:auto;display:block">
             </div>
             <div class="project-stack" style="margin-top:14px">
               <span>C/C++</span><span>Embedded</span><span>EEG DSP</span><span>Edge ML</span><span>TI ADS1299</span><span>Nordic nRF52840</span>
@@ -1166,7 +1273,7 @@
 
     <div class="timeline">
       <div class="tl-cell">
-        <div class="when">'24 → now</div>
+        <div class="when">'24 → apr '26</div>
         <div class="where">Siren</div>
         <div class="what">co-founder · cto</div>
       </div>
@@ -1306,6 +1413,199 @@
   </div>
   <div><a href="#top">↑ back to top</a></div>
 </footer>
+
+<!-- Tools-of-Choice usage modal -->
+<div class="chip-modal" id="chipModal" aria-hidden="true" role="dialog">
+  <div class="chip-modal-backdrop" data-close></div>
+  <div class="chip-modal-card" role="document">
+    <button class="chip-modal-close" type="button" data-close aria-label="Close">×</button>
+    <div class="chip-modal-header">
+      <span class="chip-modal-title" id="chipModalTitle">—</span>
+      <span class="chip-modal-subtitle">▌ where i've used it</span>
+    </div>
+    <div class="chip-modal-body" id="chipModalBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Tech → projects/experiences mapping. Edit this list as your work evolves.
+  const techUsage = {
+    // ===== Languages =====
+    'Go': [
+      { project: 'Siren Music', detail: 'Backend services with Gin — REST API, music compatibility engine, group chat infrastructure.' }
+    ],
+    'Python': [
+      { project: 'SynthIA', detail: 'Agent loop + dispatcher orchestrating the 5 on-device models and the TCP RPC bridge to Ableton.' },
+      { project: 'PhoneAssistant', detail: 'Twilio webhook + Claude API agent loop with Gmail/Calendar tool calls.' }
+    ],
+    'Java': [
+      { project: 'Apple Pay · Summer 2025', detail: 'Spring Boot services in the async Kafka pipeline that fixed the Wallet latency vulnerability.' }
+    ],
+    'Swift': [
+      { project: 'iOS prototyping', detail: 'Apple platform experimentation; native iOS work outside of work-day projects.' }
+    ],
+    'Rust': [
+      { project: 'MoveThis', detail: 'Performance-critical modules in the peer-to-peer moving-platform backend.' }
+    ],
+    'C / C++': [
+      { project: 'GatorMatix Drone', detail: 'ROS 2 offboard control nodes in C++; MAVLink command integration.' },
+      { project: 'MindHive', detail: 'Embedded firmware on the Nordic nRF52840 — on-helmet θ/α ratio inference.' }
+    ],
+    'JavaScript': [
+      { project: 'PhoneAssistant', detail: 'Lightweight web UI for the chat-based agent interface.' },
+      { project: 'Portfolio + side tooling', detail: 'This site, internal scripts, glue code across projects.' }
+    ],
+    'SQL': [
+      { project: 'Multiple projects', detail: 'Schema design + queries across Postgres-backed projects (MoveThis) and aggregate pipelines elsewhere.' }
+    ],
+
+    // ===== Backend & Infra =====
+    'Spring Boot': [
+      { project: 'Apple Pay · Summer 2025', detail: 'Service framework for the Kafka producers and consumers in the async pipeline.' }
+    ],
+    'Gin': [
+      { project: 'Siren Music', detail: 'Go HTTP framework powering the entire backend.' }
+    ],
+    'Apache Kafka': [
+      { project: 'Apple Pay · Summer 2025', detail: 'Async event pipeline replacing sync API calls — p95 latency dropped from 350ms to <50ms.' }
+    ],
+    'Redis': [
+      { project: 'Siren Music', detail: 'Cache layer for hot music queries and session data.' }
+    ],
+    'PostgreSQL': [
+      { project: 'MoveThis', detail: 'Primary relational store.' }
+    ],
+    'MongoDB': [
+      { project: 'Siren Music', detail: 'MongoDB Atlas — document store for users, playlists, posts, social graph.' }
+    ],
+    'WebSockets': [
+      { project: 'Discord clone', detail: 'Real-time messaging benchmark — 34.5M messages/day sustained on a single M2 node.' }
+    ],
+    'AWS EC2': [
+      { project: 'Siren Music', detail: 'Production hosting for backend services.' }
+    ],
+    'Docker': [
+      { project: 'Siren Music', detail: 'Containerized backend services.' },
+      { project: 'GatorMatix Drone', detail: 'ROS 2 + simulation environment packaging for repeatable HiPerGator runs.' }
+    ],
+    'Kubernetes': [
+      { project: 'Siren Music', detail: 'Orchestration for scaling backend services.' }
+    ],
+    'Nginx': [
+      { project: 'Siren Music', detail: 'Load balancer and reverse proxy fronting the Go backend.' }
+    ],
+    'Grafana': [
+      { project: 'Apple Pay · Summer 2025', detail: 'Dashboards for the 10+ metrics tracked on the Kafka pipeline.' }
+    ],
+
+    // ===== AI / ML =====
+    'PyTorch': [
+      { project: 'SynthIA', detail: 'Model loading and on-device inference across the 5-model agent stack.' }
+    ],
+    'Hugging Face': [
+      { project: 'SynthIA', detail: 'Model hub for the Gemma family + Music Flamingo.' }
+    ],
+    'QLoRA': [
+      { project: 'SynthIA', detail: 'FunctionGemma 270M fine-tuned across 33 tool schemas for the executor role.' }
+    ],
+    'MCP': [
+      { project: 'SynthIA', detail: 'Model Context Protocol integration for clean tool-calling boundaries.' }
+    ],
+    'LangSmith': [
+      { project: 'PhoneAssistant', detail: 'Agent observability, traces, and offline evaluation runs.' }
+    ],
+    'Claude API': [
+      { project: 'PhoneAssistant', detail: 'Reasoning loop for the SMS and voice agent.' }
+    ],
+    'Gemma': [
+      { project: 'SynthIA', detail: 'Gemma 4 26B planner · FunctionGemma 270M executor · EmbeddingGemma retrieval — all on-device.' }
+    ],
+
+    // ===== Robotics =====
+    'ROS 2': [
+      { project: 'GatorMatix Drone', detail: 'Humble distro — the node graph for the entire autonomy stack.' }
+    ],
+    'Gazebo': [
+      { project: 'GatorMatix Drone', detail: 'SITL running on UF HiPerGator HPC for pre-flight software-in-the-loop validation.' }
+    ],
+    'PX4': [
+      { project: 'GatorMatix Drone', detail: 'Flight controller firmware on the hexacopter.' }
+    ],
+    'MAVLink': [
+      { project: 'GatorMatix Drone', detail: 'Comms protocol between the offboard ROS 2 control nodes and PX4.' }
+    ],
+    'Nav2': [
+      { project: 'GatorMatix Drone', detail: 'Explored as the global planner — ultimately replaced by EGO-Planner in the final design.' }
+    ],
+    'EGO-Planner': [
+      { project: 'GatorMatix Drone', detail: 'Final trajectory optimizer for local planning on the drone.' }
+    ],
+    'Point-LIO': [
+      { project: 'GatorMatix Drone', detail: 'Tightly-coupled LiDAR-inertial SLAM using Unitree L2 LiDAR + IMU at 250Hz.' }
+    ],
+    'NvBlox': [
+      { project: 'GatorMatix Drone', detail: 'GPU-accelerated voxel mapping on the on-board Jetson.' }
+    ],
+    'Isaac Sim': [
+      { project: 'GatorMatix Drone', detail: 'NVIDIA Isaac Sim 4.5 — explored for perception testing on HiPerGator.' }
+    ]
+  };
+
+  const modal = document.getElementById('chipModal');
+  const titleEl = document.getElementById('chipModalTitle');
+  const bodyEl  = document.getElementById('chipModalBody');
+
+  function openModal(tech){
+    const rows = techUsage[tech];
+    titleEl.textContent = tech;
+    if (rows && rows.length){
+      bodyEl.innerHTML = rows.map(r => (
+        '<div class="usage-row">' +
+          '<div class="usage-project">' + r.project + '</div>' +
+          '<div class="usage-detail">' + r.detail + '</div>' +
+        '</div>'
+      )).join('');
+    } else {
+      bodyEl.innerHTML = '<div class="usage-empty">No project notes yet for this one.</div>';
+    }
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  // wire up close buttons / backdrop
+  modal.querySelectorAll('[data-close]').forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  // wire up only the Tools-of-Choice chips (#stack .chip), not per-project chips
+  document.addEventListener('DOMContentLoaded', function(){
+    const chips = document.querySelectorAll('#stack .chip');
+    chips.forEach(chip => {
+      const tech = chip.textContent.trim();
+      if (techUsage[tech] && techUsage[tech].length){
+        chip.classList.add('chip-active');
+        chip.setAttribute('role','button');
+        chip.setAttribute('tabindex','0');
+        chip.addEventListener('click', () => openModal(tech));
+        chip.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openModal(tech); }
+        });
+      }
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
